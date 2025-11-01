@@ -1,3 +1,7 @@
+import type { ProductList } from '@/shared/api/types';
+
 export interface ProductsState {
-  products: [];
+  isLoading: boolean;
+  error: string | null;
+  productsList: ProductList;
 }
