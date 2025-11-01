@@ -1,10 +1,20 @@
-export const DeleteIcon = () => {
+import clsx from 'clsx';
+import type { ComponentProps, FC } from 'react';
+
+export const DeleteIcon: FC<ComponentProps<'svg'>> = ({
+  className,
+  ...props
+}) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24"
       fill="currentColor"
-      className="size-8 border cursor-pointer border-gray-700 p-1 rounded-lg hover:bg-gray-600 hover:text-white transition-all"
+      className={clsx(
+        'size-8 border cursor-pointer border-gray-700 p-1 rounded-lg hover:bg-gray-600 hover:text-white transition-all',
+        className
+      )}
+      {...props}
     >
       <path
         fillRule="evenodd"
@@ -14,5 +24,3 @@ export const DeleteIcon = () => {
     </svg>
   );
 };
-
-export default DeleteIcon;

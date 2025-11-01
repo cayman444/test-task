@@ -20,6 +20,9 @@ export const productsSlice = createSlice({
         product.isLiked = !product.isLiked;
       }
     },
+    deleteProduct: (state, { payload }: PayloadAction<number>) => {
+      state.productsList = state.productsList.filter((p) => p.id !== payload);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -47,5 +50,5 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { toggleLike } = productsSlice.actions;
+export const { toggleLike, deleteProduct } = productsSlice.actions;
 export default productsSlice.reducer;

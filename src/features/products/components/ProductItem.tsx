@@ -1,7 +1,7 @@
-import { useAppDispatch } from '@/app/store/store-hooks';
 import type { FC } from 'react';
 import { Link } from 'react-router-dom';
-import { type ProductTransform, toggleLike } from '../model';
+import { useProductItem } from '../hooks';
+import { type ProductTransform } from '../model';
 import { DeleteIcon, LikeIcon } from '../ui';
 
 export const ProductItem: FC<ProductTransform> = ({
@@ -11,10 +11,7 @@ export const ProductItem: FC<ProductTransform> = ({
   id,
   isLiked,
 }) => {
-  const dispatch = useAppDispatch();
-  const handleChangeLike = () => {
-    dispatch(toggleLike(id));
-  };
+  const { handleChangeLike, handleDeleteProduct } = useProductItem(id);
 
   return (
     <li className="h-full border rounded-lg">
@@ -35,7 +32,7 @@ export const ProductItem: FC<ProductTransform> = ({
         </Link>
         <div className="flex items-center gap-2 p-2 border-t">
           <LikeIcon onClick={handleChangeLike} isLiked={isLiked} />
-          <DeleteIcon />
+          <DeleteIcon onClick={handleDeleteProduct} />
         </div>
       </div>
     </li>
