@@ -13,8 +13,9 @@ export const fetchProducts = createAsyncThunk<
 
     return response.data;
   } catch (error) {
+    console.log(error);
     if (error instanceof AxiosError) {
-      return rejectWithValue(error.response?.data?.message ?? error.message);
+      return rejectWithValue(error.message);
     }
 
     return rejectWithValue(`unknown error: ${error}`);
