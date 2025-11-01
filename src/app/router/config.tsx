@@ -1,3 +1,4 @@
+import { CreateProduct, NotFound, ProductDetails, Products } from '@/pages';
 import { createBrowserRouter, redirect } from 'react-router-dom';
 import { RootLayout } from '../layouts';
 
@@ -17,17 +18,17 @@ export const router = createBrowserRouter([
       },
       {
         path: ROUTES_PATHS.PRODUCTS,
-        element: <div>products</div>,
+        element: <Products />,
       },
       {
         path: ROUTES_PATHS.PRODUCTS_DETAILS,
-        element: <div>details products</div>,
+        element: <ProductDetails />,
       },
       {
         path: ROUTES_PATHS.CREATE_PRODUCT,
-        element: <div>create product</div>,
+        element: <CreateProduct />,
       },
-      { path: '*', element: <div>Not found page</div> },
+      { path: '*', element: <NotFound /> },
     ],
   },
 ]);

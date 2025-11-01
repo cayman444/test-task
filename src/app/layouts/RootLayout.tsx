@@ -12,10 +12,10 @@ export const RootLayout: FC<PropsWithChildren<ComponentProps<'div'>>> = ({
   className,
 }) => {
   return (
-    <div className={clsx('max-w-6xl px-4 mx-auto', className)}>
+    <main className={clsx('max-w-6xl px-4 mx-auto', className)}>
       <Suspense fallback={<Spinner />}>
         <Outlet />
       </Suspense>
-    </div>
+    </main>
   );
 };
