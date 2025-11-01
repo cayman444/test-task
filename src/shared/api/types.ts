@@ -1,6 +1,6 @@
 export interface Products {
   info: ProductsInfo;
-  results: ProductList;
+  results: ProductsList;
 }
 
 interface ProductsInfo {
@@ -25,7 +25,7 @@ export interface Product {
   created: string;
 }
 
-export type ProductList = Product[];
+export type ProductsList = Product[];
 
 interface ProductLocation {
   name: string;

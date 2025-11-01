@@ -1,1 +1,2 @@
-export { default as productsReducer } from './products-slice';
+export { default as productsReducer, toggleLike } from './products-slice';
+export type { ProductTransform } from './products-types';

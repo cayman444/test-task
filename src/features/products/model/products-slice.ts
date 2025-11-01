@@ -12,7 +12,15 @@ const initialState: ProductsState = {
 export const productsSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {},
+  reducers: {
+    toggleLike: (state, { payload }: PayloadAction<number>) => {
+      const product = state.productsList.find((p) => p.id === payload);
+
+      if (product) {
+        product.isLiked = !product.isLiked;
+      }
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProducts.pending, (state) => {
@@ -22,7 +30,11 @@ export const productsSlice = createSlice({
       .addCase(
         fetchProducts.fulfilled,
         (state, { payload }: PayloadAction<Products>) => {
-          state.productsList = payload.results;
+          state.productsList = payload.results.map((product) => ({
+            ...product,
+            isLiked: false,
+          }));
+
           state.isLoading = false;
           state.error = null;
         }
@@ -35,4 +47,5 @@ export const productsSlice = createSlice({
   },
 });
 
+export const { toggleLike } = productsSlice.actions;
 export default productsSlice.reducer;
