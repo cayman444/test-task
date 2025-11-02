@@ -1,11 +1,12 @@
 import { fetchProducts } from '@/shared/api/products-api';
 import type { Products } from '@/shared/api/types';
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
-import type { ProductsState } from './products-types';
+import type { ProductsState, VisibilityProducts } from './products-types';
 
 const initialState: ProductsState = {
   isLoading: false,
   error: null,
+  visibilityProducts: 'all',
   productsList: [],
 };
 
@@ -22,6 +23,12 @@ export const productsSlice = createSlice({
     },
     deleteProduct: (state, { payload }: PayloadAction<number>) => {
       state.productsList = state.productsList.filter((p) => p.id !== payload);
+    },
+    changeVisibilityProducts: (
+      state,
+      { payload }: PayloadAction<VisibilityProducts>
+    ) => {
+      state.visibilityProducts = payload;
     },
   },
   extraReducers: (builder) => {
@@ -50,5 +57,6 @@ export const productsSlice = createSlice({
   },
 });
 
-export const { toggleLike, deleteProduct } = productsSlice.actions;
+export const { toggleLike, deleteProduct, changeVisibilityProducts } =
+  productsSlice.actions;
 export default productsSlice.reducer;

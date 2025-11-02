@@ -8,7 +8,7 @@ export const ProductsList = () => {
   );
 
   return (
-    <ul className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-5 my-30">
+    <ul className="grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-5">
       {isLoading && <Spinner />}
       {error && (
         <div className="text-center font-medium text-red-500">{error}</div>

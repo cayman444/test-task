@@ -7,5 +7,8 @@ export interface ProductTransform extends Product {
 export interface ProductsState {
   isLoading: boolean;
   error: string | null;
+  visibilityProducts: VisibilityProducts;
   productsList: ProductTransform[];
 }
+
+export type VisibilityProducts = 'all' | 'favorites';

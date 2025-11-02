@@ -2,7 +2,7 @@ import type { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useProductItem } from '../hooks';
 import { type ProductTransform } from '../model';
-import { DeleteIcon, LikeIcon } from '../ui';
+import { ArrowIcon, DeleteIcon, LikeIcon } from '../ui';
 
 export const ProductItem: FC<ProductTransform> = ({
   name,
@@ -30,9 +30,14 @@ export const ProductItem: FC<ProductTransform> = ({
             </div>
           </div>
         </Link>
-        <div className="flex items-center gap-2 p-2 border-t">
-          <LikeIcon onClick={handleChangeLike} isLiked={isLiked} />
-          <DeleteIcon onClick={handleDeleteProduct} />
+        <div className="flex items-center justify-between gap-2 p-2 border-t">
+          <div className="flex items-center gap-2">
+            <LikeIcon onClick={handleChangeLike} isLiked={isLiked} />
+            <DeleteIcon onClick={handleDeleteProduct} />
+          </div>
+          <Link to={`/products/${id}`}>
+            <ArrowIcon className="rotate-180" />
+          </Link>
         </div>
       </div>
     </li>
