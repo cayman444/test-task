@@ -5,11 +5,13 @@ import type { Product, Products } from './types';
 
 export const fetchProducts = createAsyncThunk<
   Products,
-  undefined,
+  number,
   { rejectValue: string }
->('products/fetchProducts', async (_, { rejectWithValue }) => {
+>('products/fetchProducts', async (page, { rejectWithValue }) => {
   try {
-    const response = await axiosInstance.get<Products>('/character');
+    const response = await axiosInstance.get<Products>('/character', {
+      params: { page },
+    });
 
     return response.data;
   } catch (error) {

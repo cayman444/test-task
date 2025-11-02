@@ -2,6 +2,7 @@ import { fetchProducts } from '@/shared/api/products-api';
 import type { Products } from '@/shared/api/types';
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 import type {
+  Pagination,
   ProductTransform,
   ProductsState,
   VisibilityProducts,
@@ -11,6 +12,7 @@ const initialState: ProductsState = {
   isLoading: false,
   error: null,
   visibilityProducts: 'all',
+  pagination: { currentPage: 1, totalPages: null },
   productsList: [],
   favoritesProducts: [],
   localProducts: [],
@@ -62,6 +64,15 @@ export const productsSlice = createSlice({
     createProduct: (state, { payload }: PayloadAction<ProductTransform>) => {
       state.localProducts.push(payload);
     },
+    setPagination: (state, { payload }: PayloadAction<Pagination>) => {
+      if (payload.currentPage) {
+        state.pagination.currentPage = payload.currentPage;
+      }
+
+      if ('totalPages' in payload) {
+        state.pagination.totalPages = payload.totalPages ?? null;
+      }
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -77,6 +88,7 @@ export const productsSlice = createSlice({
             isLiked: state.favoritesProducts.some((p) => p.id === product.id),
           }));
 
+          state.pagination.totalPages = payload.info.pages;
           state.isLoading = false;
           state.error = null;
         }
@@ -94,5 +106,6 @@ export const {
   deleteProduct,
   changeVisibilityProducts,
   createProduct,
+  setPagination,
 } = productsSlice.actions;
 export default productsSlice.reducer;

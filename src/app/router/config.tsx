@@ -22,7 +22,7 @@ export const router = createBrowserRouter([
         path: ROUTES_PATHS.PRODUCTS,
         element: <Products />,
         loader: () => {
-          store.dispatch(fetchProducts());
+          store.dispatch(fetchProducts(1));
           return null;
         },
       },

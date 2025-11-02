@@ -9,7 +9,7 @@ export const ProductsFilter = () => {
     useProductsFilter();
 
   return (
-    <div className="flex items-center justify-between">
+    <div className="flex items-center justify-between flex-wrap gap-4">
       <div className="flex items-center gap-2">
         <label htmlFor="products-visibility" className="text-lg font-semibold">
           Products visibility:

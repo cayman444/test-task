@@ -11,6 +11,12 @@ export interface ProductsState {
   productsList: ProductTransform[];
   localProducts: ProductTransform[];
   favoritesProducts: ProductTransform[];
+  pagination: Pagination;
+}
+
+export interface Pagination {
+  totalPages?: number | null;
+  currentPage: number;
 }
 
 export type VisibilityProducts = 'all' | 'favorites';

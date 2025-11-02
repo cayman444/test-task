@@ -3,5 +3,6 @@ export {
   toggleLike,
   deleteProduct,
   changeVisibilityProducts,
+  setPagination,
 } from './products-slice';
 export type * from './products-types';

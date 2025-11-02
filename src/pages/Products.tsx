@@ -1,5 +1,6 @@
 import {
   LocalProductsList,
+  Pagination,
   ProductsFilter,
   ProductsList,
 } from '@/features/products/components';
@@ -9,6 +10,7 @@ export const Products = () => {
     <div className="flex flex-col gap-5 my-30">
       <ProductsFilter />
       <ProductsList />
+      <Pagination />
       <LocalProductsList />
     </div>
   );
