@@ -33,8 +33,8 @@ export const Product = () => {
           {productDetails.name}
         </h1>
       </div>
-      <div className="flex gap-4">
-        <div className="relative w-100 h-100">
+      <div className="flex gap-4 flex-col md:flex-row">
+        <div className="relative w-full h-100 md:w-100">
           <img
             src={productDetails.image}
             alt={productDetails.type}
