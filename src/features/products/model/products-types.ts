@@ -9,6 +9,8 @@ export interface ProductsState {
   error: string | null;
   visibilityProducts: VisibilityProducts;
   productsList: ProductTransform[];
+  localProducts: ProductTransform[];
+  favoritesProducts: ProductTransform[];
 }
 
 export type VisibilityProducts = 'all' | 'favorites';

@@ -1,15 +1,15 @@
 import { useAppDispatch } from '@/app/store/store-hooks';
-import { deleteProduct, toggleLike } from '../model';
+import { type ProductTransform, deleteProduct, toggleLike } from '../model';
 
-export const useProductItem = (id: number) => {
+export const useProductItem = (product: ProductTransform) => {
   const dispatch = useAppDispatch();
 
   const handleChangeLike = () => {
-    dispatch(toggleLike(id));
+    dispatch(toggleLike(product));
   };
 
   const handleDeleteProduct = () => {
-    dispatch(deleteProduct(id));
+    dispatch(deleteProduct(product.id));
   };
 
   return { handleChangeLike, handleDeleteProduct };

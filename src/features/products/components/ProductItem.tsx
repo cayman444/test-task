@@ -5,14 +5,9 @@ import { useProductItem } from '../hooks';
 import { type ProductTransform } from '../model';
 import { DeleteIcon, LikeIcon } from '../ui';
 
-export const ProductItem: FC<ProductTransform> = ({
-  name,
-  image,
-  type,
-  id,
-  isLiked,
-}) => {
-  const { handleChangeLike, handleDeleteProduct } = useProductItem(id);
+export const ProductItem: FC<ProductTransform> = (product) => {
+  const { id, image, type, name, isLiked } = product;
+  const { handleChangeLike, handleDeleteProduct } = useProductItem(product);
 
   return (
     <li className="h-full border rounded-lg">

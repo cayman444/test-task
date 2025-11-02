@@ -12,21 +12,46 @@ const initialState: ProductsState = {
   error: null,
   visibilityProducts: 'all',
   productsList: [],
+  favoritesProducts: [],
+  localProducts: [],
 };
 
 export const productsSlice = createSlice({
   name: 'products',
   initialState,
   reducers: {
-    toggleLike: (state, { payload }: PayloadAction<number>) => {
-      const product = state.productsList.find((p) => p.id === payload);
+    toggleLike: (state, { payload }: PayloadAction<ProductTransform>) => {
+      const productId = payload.id;
 
-      if (product) {
-        product.isLiked = !product.isLiked;
+      const favoriteIndex = state.favoritesProducts.findIndex(
+        (p) => p.id === productId
+      );
+
+      if (favoriteIndex === -1) {
+        state.favoritesProducts.push({
+          ...payload,
+          isLiked: true,
+        });
+      } else {
+        state.favoritesProducts.splice(favoriteIndex, 1);
+      }
+
+      const currentProduct = state.productsList.find((p) => p.id === productId);
+      if (currentProduct) {
+        currentProduct.isLiked = !currentProduct.isLiked;
+      }
+
+      const localProduct = state.localProducts.find((p) => p.id === productId);
+      if (localProduct) {
+        localProduct.isLiked = !localProduct.isLiked;
       }
     },
     deleteProduct: (state, { payload }: PayloadAction<number>) => {
       state.productsList = state.productsList.filter((p) => p.id !== payload);
+      state.localProducts = state.localProducts.filter((p) => p.id !== payload);
+      state.favoritesProducts = state.favoritesProducts.filter(
+        (p) => p.id !== payload
+      );
     },
     changeVisibilityProducts: (
       state,
@@ -49,7 +74,7 @@ export const productsSlice = createSlice({
         (state, { payload }: PayloadAction<Products>) => {
           state.productsList = payload.results.map((product) => ({
             ...product,
-            isLiked: false,
+            isLiked: state.favoritesProducts.some((p) => p.id === product.id),
           }));
 
           state.isLoading = false;

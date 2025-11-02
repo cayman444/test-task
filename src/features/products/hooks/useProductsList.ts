@@ -1,19 +1,16 @@
 import { useAppSelector } from '@/app/store/store-hooks';
-import { useMemo } from 'react';
 
 export const useProductsList = () => {
-  const { productsList, isLoading, error, visibilityProducts } = useAppSelector(
-    (state) => state.products
-  );
+  const {
+    productsList,
+    isLoading,
+    error,
+    visibilityProducts,
+    favoritesProducts,
+  } = useAppSelector((state) => state.products);
 
-  const productsVisibilityList = useMemo(() => {
-    return productsList.filter(({ isLiked }) => {
-      if (visibilityProducts === 'all') return true;
-      if (visibilityProducts === 'favorites' && isLiked) return true;
-
-      return false;
-    });
-  }, [productsList, visibilityProducts]);
+  const productsVisibilityList =
+    visibilityProducts === 'all' ? productsList : favoritesProducts;
 
   return { productsList: productsVisibilityList, isLoading, error };
 };
