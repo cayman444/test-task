@@ -1,25 +1,12 @@
 import { Button } from '@/shared/ui';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { type SubmitHandler, useForm } from 'react-hook-form';
-import { type FormProductFields, productSchema } from '../schema';
+import { useProductCreateForm } from '../hooks';
 import { FormFile } from './FormFile';
 import { FormInput } from './FormInput';
 import { FormSelect } from './FormSelect';
 
 export const ProductCreateForm = () => {
-  const {
-    register,
-    handleSubmit,
-    control,
-    formState: { errors },
-  } = useForm<FormProductFields>({
-    mode: 'onBlur',
-    resolver: zodResolver(productSchema),
-  });
-
-  const onSubmit: SubmitHandler<FormProductFields> = (data) => {
-    console.log(data);
-  };
+  const { control, errors, handleSubmit, onSubmit, register } =
+    useProductCreateForm();
 
   return (
     <form
@@ -40,9 +27,9 @@ export const ProductCreateForm = () => {
           title="Status"
           name="status"
           options={[
-            { value: 'alive', text: 'Alive' },
-            { value: 'dead', text: 'Dead' },
-            { value: 'unknown', text: 'Unknown' },
+            { value: 'Alive', text: 'Alive' },
+            { value: 'Dead', text: 'Dead' },
+            { value: 'unknown', text: 'unknown' },
           ]}
           error={errors.status?.message}
         />
@@ -65,9 +52,9 @@ export const ProductCreateForm = () => {
           title="Gender"
           name="gender"
           options={[
-            { value: 'male', text: 'Male' },
-            { value: 'female', text: 'Female' },
-            { value: 'genderless', text: 'Genderless' },
+            { value: 'Male', text: 'Male' },
+            { value: 'Female', text: 'Female' },
+            { value: 'Genderless', text: 'Genderless' },
             { value: 'unknown', text: 'unknown' },
           ]}
           error={errors.gender?.message}

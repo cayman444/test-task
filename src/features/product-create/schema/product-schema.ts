@@ -18,8 +18,8 @@ export const productSchema = z.object({
     .refine((val) => val.size <= 2 * 1024 * 1024, {
       error: 'the file size must not exceed 2MB',
     }),
-  status: z.string().nonempty({ error: 'Required to fill' }),
-  gender: z.string().nonempty({ error: 'Required to fill' }),
+  status: z.enum(['Alive', 'Dead', 'unknown']),
+  gender: z.enum(['unknown', 'Female', 'Male', 'Genderless']),
 });
 
 export type FormProductFields = z.infer<typeof productSchema>;
