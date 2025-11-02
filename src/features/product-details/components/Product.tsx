@@ -1,8 +1,17 @@
+import { ROUTES_PATHS } from '@/app/router';
 import { useAppSelector } from '@/app/store/store-hooks';
-import { EmptyResponse, ErrorMessage, Spinner } from '@/shared/ui';
+import {
+  ArrowIcon,
+  Button,
+  EmptyResponse,
+  ErrorMessage,
+  Spinner,
+} from '@/shared/ui';
+import { useNavigate } from 'react-router-dom';
 import { ProductInfoItem } from './ProductInfoItem';
 
 export const Product = () => {
+  const navigate = useNavigate();
   const { productDetails, isLoading, error } = useAppSelector(
     (state) => state.product
   );
@@ -13,9 +22,17 @@ export const Product = () => {
 
   return (
     <div className="flex flex-col gap-10">
-      <h1 className="text-center text-4xl font-semibold">
-        {productDetails.name}
-      </h1>
+      <div className="flex flex-col gap-2">
+        <Button
+          className="self-start flex items-center gap-2"
+          onClick={() => navigate(ROUTES_PATHS.PRODUCTS)}
+        >
+          <ArrowIcon /> Back to home
+        </Button>
+        <h1 className="text-center text-4xl font-semibold">
+          {productDetails.name}
+        </h1>
+      </div>
       <div className="flex gap-4">
         <div className="relative w-100 h-100">
           <img

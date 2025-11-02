@@ -8,7 +8,7 @@ export const NotFound = () => {
   return (
     <div className="flex h-screen items-center justify-center">
       <div className="flex flex-col gap-16 items-center justify-center">
-        <h1 className="text-white font-medium text-2xl">Nothing found 😕</h1>
+        <h1 className="font-medium text-2xl">Nothing found 😕</h1>
         <Button onClick={() => navigate(ROUTES_PATHS.PRODUCTS)}>
           Back to home
         </Button>
