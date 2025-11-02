@@ -1,12 +1,15 @@
+import { ROUTES_PATHS } from '@/app/router';
 import { useAppDispatch } from '@/app/store/store-hooks';
 import { createProduct } from '@/features/products/model/products-slice';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type SubmitHandler, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 import { type FormProductFields, productSchema } from '../schema';
 import { encodeImageFile } from '../utils';
 
 export const useProductCreateForm = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -37,6 +40,8 @@ export const useProductCreateForm = () => {
         id: Date.now(),
       })
     );
+
+    navigate(ROUTES_PATHS.PRODUCTS);
   };
 
   return { control, errors, onSubmit, register, handleSubmit };

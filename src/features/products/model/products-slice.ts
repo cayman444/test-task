@@ -60,7 +60,7 @@ export const productsSlice = createSlice({
       state.visibilityProducts = payload;
     },
     createProduct: (state, { payload }: PayloadAction<ProductTransform>) => {
-      state.productsList.push(payload);
+      state.localProducts.push(payload);
     },
   },
   extraReducers: (builder) => {
