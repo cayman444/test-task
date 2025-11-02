@@ -9,7 +9,7 @@ import type {
 } from './products-types';
 
 const initialState: ProductsState = {
-  isLoading: false,
+  isLoading: true,
   error: null,
   visibilityProducts: 'all',
   pagination: { currentPage: 1, totalPages: null },

@@ -1,5 +1,5 @@
 import { CreateProduct, NotFound, ProductDetails, Products } from '@/pages';
-import { fetchProduct, fetchProducts } from '@/shared/api/products-api';
+import { fetchProduct } from '@/shared/api/products-api';
 import { createBrowserRouter, redirect } from 'react-router-dom';
 import { RootLayout } from '../layouts';
 import { store } from '../store';
@@ -21,10 +21,6 @@ export const router = createBrowserRouter([
       {
         path: ROUTES_PATHS.PRODUCTS,
         element: <Products />,
-        loader: () => {
-          store.dispatch(fetchProducts(1));
-          return null;
-        },
       },
       {
         path: ROUTES_PATHS.PRODUCTS_DETAILS,
