@@ -2,15 +2,18 @@ import { Button } from '@/shared/ui';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { type FormProductFields, productSchema } from '../schema';
+import { FormFile } from './FormFile';
 import { FormInput } from './FormInput';
+import { FormSelect } from './FormSelect';
 
 export const ProductCreateForm = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm<FormProductFields>({
-    mode: 'onChange',
+    mode: 'onBlur',
     resolver: zodResolver(productSchema),
   });
 
@@ -32,17 +35,17 @@ export const ProductCreateForm = () => {
           error={errors['product-name']?.message}
           placeholder="Enter name product"
         />
-        <label className="flex flex-col gap-1 font-medium">
-          Status
-          <select
-            name="status"
-            className={`border-2 rounded text-gray-700 border-gray-300 focus:border-blue-500 outline-0 px-2 py-1 transition-colors`}
-          >
-            <option value="alive">Alive</option>
-            <option value="dead">Dead</option>
-            <option value="unknown">Unknown</option>
-          </select>
-        </label>
+        <FormSelect
+          register={register}
+          title="Status"
+          name="status"
+          options={[
+            { value: 'alive', text: 'Alive' },
+            { value: 'dead', text: 'Dead' },
+            { value: 'unknown', text: 'Unknown' },
+          ]}
+          error={errors.status?.message}
+        />
         <FormInput
           register={register}
           title="Species"
@@ -57,18 +60,18 @@ export const ProductCreateForm = () => {
           error={errors['type']?.message}
           placeholder="Enter type product"
         />
-        <label className="flex flex-col gap-1 font-medium">
-          Gender
-          <select
-            name="gender"
-            className={`border-2 rounded text-gray-700 border-gray-300 focus:border-blue-500 outline-0 px-2 py-1 transition-colors`}
-          >
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="genderless">Genderless</option>
-            <option value="unknown">unknown</option>
-          </select>
-        </label>
+        <FormSelect
+          register={register}
+          title="Gender"
+          name="gender"
+          options={[
+            { value: 'male', text: 'Male' },
+            { value: 'female', text: 'Female' },
+            { value: 'genderless', text: 'Genderless' },
+            { value: 'unknown', text: 'unknown' },
+          ]}
+          error={errors.gender?.message}
+        />
         <FormInput
           register={register}
           title="Location"
@@ -76,16 +79,12 @@ export const ProductCreateForm = () => {
           error={errors['location']?.message}
           placeholder="Enter location product"
         />
-        <label className="flex flex-col gap-1 font-medium">
-          Image
-          <input
-            {...register('image')}
-            name="image"
-            type="file"
-            accept="image/png, image/jpeg"
-            className={`border-2 border-dashed rounded text-center text-gray-700 border-gray-300 focus:border-blue-500 outline-0 px-2 py-1 transition-colors cursor-pointer hover:border-blue-500`}
-          />
-        </label>
+        <FormFile
+          control={control}
+          title="Image"
+          name="image"
+          error={errors.image?.message}
+        />
       </div>
       <Button>Submit</Button>
     </form>

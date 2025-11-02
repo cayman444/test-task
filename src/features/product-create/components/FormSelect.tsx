@@ -2,33 +2,35 @@ import type { FC } from 'react';
 import type { UseFormRegister } from 'react-hook-form';
 import type { FormProductFields } from '../schema';
 
-interface FormInputProps {
+interface FormSelectProps {
   register: UseFormRegister<FormProductFields>;
   title: string;
   name: keyof FormProductFields;
-  placeholder: string;
+  options: { value: string; text: string }[];
   error?: string;
-  type?: string;
 }
 
-export const FormInput: FC<FormInputProps> = ({
+export const FormSelect: FC<FormSelectProps> = ({
   register,
   title,
   name,
-  placeholder,
-  type = 'text',
+  options,
   error = '',
 }) => {
   return (
     <label className="flex flex-col gap-1 font-medium">
       {title}
-      <input
+      <select
         {...register(name)}
         name={name}
-        type={type}
-        placeholder={placeholder}
         className={`border-2 rounded text-gray-700 border-gray-300 focus:border-blue-500 outline-0 px-2 py-1 transition-colors ${error && 'border-red-500'}`}
-      />
+      >
+        {options.map(({ text, value }) => (
+          <option key={value} value={value}>
+            {text}
+          </option>
+        ))}
+      </select>
       <p className="text-xs text-red-500">{error}</p>
     </label>
   );
