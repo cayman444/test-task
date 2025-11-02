@@ -13,10 +13,10 @@ interface ProductsInfo {
 export interface Product {
   id: number;
   name: string;
-  status: string;
+  status: 'Alive' | 'Dead' | 'unknown';
   species: string;
   type: string;
-  gender: string;
+  gender: 'Female' | 'Male' | 'Genderless' | 'unknown';
   origin: ProductLocation;
   location: ProductLocation;
   image: string;
