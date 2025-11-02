@@ -1,29 +1,19 @@
-import { useAppDispatch, useAppSelector } from '@/app/store/store-hooks';
 import { Button } from '@/shared/ui';
 import clsx from 'clsx';
-import { setPagination } from '../model';
+import { usePagination } from '../hooks';
 
 export const Pagination = () => {
-  const dispatch = useAppDispatch();
-  const { visibilityProducts } = useAppSelector((state) => state.products);
-  const { currentPage, totalPages } = useAppSelector(
-    (state) => state.products.pagination
-  );
+  const data = usePagination();
+  if (!data) return;
 
-  if (!totalPages || totalPages === 1 || visibilityProducts === 'favorites')
-    return;
-
-  const handlePrevPage = () => {
-    dispatch(setPagination({ currentPage: currentPage - 1 }));
-  };
-
-  const handleNextPage = () => {
-    if (currentPage < totalPages) {
-      dispatch(setPagination({ currentPage: currentPage + 1 }));
-    }
-  };
-
-  const pages = [...Array(totalPages)];
+  const {
+    pages,
+    currentPage,
+    totalPages,
+    handleNextPage,
+    handlePrevPage,
+    setPage,
+  } = data;
 
   return (
     <div className="flex items-center gap-4 overflow-auto pb-2">
@@ -48,7 +38,7 @@ export const Pagination = () => {
               },
               'flex justify-center items-center w-10'
             )}
-            onClick={() => dispatch(setPagination({ currentPage: ind + 1 }))}
+            onClick={() => setPage(ind)}
           >
             {ind + 1}
           </Button>
