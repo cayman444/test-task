@@ -16,7 +16,7 @@ export const Pagination = () => {
   } = data;
 
   return (
-    <div className="flex items-center gap-4 overflow-auto pb-2">
+    <div className="flex items-center gap-4 overflow-auto pb-2 justify-center">
       <Button
         className={clsx(
           {

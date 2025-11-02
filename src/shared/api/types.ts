@@ -1,3 +1,5 @@
+import type { Filter } from '@/features/products/model';
+
 export interface Products {
   info: ProductsInfo;
   results: ProductsList;
@@ -27,6 +29,9 @@ export interface Product {
 
 export type ProductsList = Product[];
 
+export interface ProductsParams extends Filter {
+  page: number;
+}
 interface ProductLocation {
   name: string;
   url: string;

@@ -7,16 +7,27 @@ export interface ProductTransform extends Product {
 export interface ProductsState {
   isLoading: boolean;
   error: string | null;
-  visibilityProducts: VisibilityProducts;
   productsList: ProductTransform[];
   localProducts: ProductTransform[];
   favoritesProducts: ProductTransform[];
   pagination: Pagination;
+  filter: Filter;
 }
 
 export interface Pagination {
   totalPages?: number | null;
   currentPage: number;
+}
+
+export interface Filter {
+  status?: Product['status'];
+  gender?: Product['gender'];
+  visibilityProducts?: VisibilityProducts;
+}
+
+export interface FilterParams {
+  key: keyof Filter;
+  value: string;
 }
 
 export type VisibilityProducts = 'all' | 'favorites';

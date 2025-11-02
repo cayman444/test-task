@@ -2,7 +2,7 @@ export {
   default as productsReducer,
   toggleLike,
   deleteProduct,
-  changeVisibilityProducts,
   setPagination,
+  setFilter,
 } from './products-slice';
 export type * from './products-types';

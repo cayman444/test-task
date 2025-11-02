@@ -1,28 +1,31 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 import { axiosInstance } from './instance';
-import type { Product, Products } from './types';
+import type { Product, Products, ProductsParams } from './types';
 
 export const fetchProducts = createAsyncThunk<
   Products,
-  number,
+  ProductsParams,
   { rejectValue: string }
->('products/fetchProducts', async (page, { rejectWithValue }) => {
-  try {
-    const response = await axiosInstance.get<Products>('/character', {
-      params: { page },
-    });
+>(
+  'products/fetchProducts',
+  async ({ page, gender, status }, { rejectWithValue }) => {
+    try {
+      const response = await axiosInstance.get<Products>('/character', {
+        params: { page, gender, status },
+      });
 
-    return response.data;
-  } catch (error) {
-    console.log(error);
-    if (error instanceof AxiosError) {
-      return rejectWithValue(error.message);
+      return response.data;
+    } catch (error) {
+      console.log(error);
+      if (error instanceof AxiosError) {
+        return rejectWithValue(error.message);
+      }
+
+      return rejectWithValue(`unknown error: ${error}`);
     }
-
-    return rejectWithValue(`unknown error: ${error}`);
   }
-});
+);
 
 export const fetchProduct = createAsyncThunk<
   Product,

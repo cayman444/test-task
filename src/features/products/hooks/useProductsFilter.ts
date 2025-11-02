@@ -1,18 +1,21 @@
 import { useAppDispatch, useAppSelector } from '@/app/store/store-hooks';
-import type { ChangeEvent } from 'react';
-import { type VisibilityProducts, changeVisibilityProducts } from '../model';
+import { type FilterParams, setFilter, setPagination } from '../model';
 
 export const useProductsFilter = () => {
   const dispatch = useAppDispatch();
-  const visibilityProducts = useAppSelector(
-    (state) => state.products.visibilityProducts
+  const { status, visibilityProducts, gender } = useAppSelector(
+    (state) => state.products.filter
   );
 
-  const handleChangeProductsVisibility = (
-    e: ChangeEvent<HTMLSelectElement>
-  ) => {
-    dispatch(changeVisibilityProducts(e.target.value as VisibilityProducts));
+  const changeFilter = ({ key, value }: FilterParams) => {
+    dispatch(setFilter({ key, value }));
+    dispatch(setPagination({ currentPage: 1 }));
   };
 
-  return { visibilityProducts, handleChangeProductsVisibility };
+  return {
+    visibilityProducts,
+    status,
+    gender,
+    changeFilter,
+  };
 };
