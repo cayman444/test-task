@@ -2,10 +2,10 @@ import { useAppSelector } from '@/app/store/store-hooks';
 import { ProductItem } from './ProductItem';
 
 export const LocalProductsList = () => {
-  const { localProducts, filter } = useAppSelector((state) => state.products);
+  const { localProducts } = useAppSelector((state) => state.products);
+  const { visibilityProducts } = useAppSelector((state) => state.filters);
 
-  if (!localProducts.length || filter.visibilityProducts === 'favorites')
-    return;
+  if (!localProducts.length || visibilityProducts === 'favorites') return;
 
   return (
     <div className="flex flex-col gap-5">
