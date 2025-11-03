@@ -73,7 +73,7 @@ export const ProductCreateForm = () => {
           error={errors.image?.message}
         />
       </div>
-      <Button>Submit</Button>
+      <Button>Create</Button>
     </form>
   );
 };

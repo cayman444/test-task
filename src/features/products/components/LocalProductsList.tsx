@@ -2,15 +2,14 @@ import { useAppSelector } from '@/app/store/store-hooks';
 import { ProductItem } from './ProductItem';
 
 export const LocalProductsList = () => {
-  const { localProducts, visibilityProducts } = useAppSelector(
-    (state) => state.products
-  );
+  const { localProducts, filter } = useAppSelector((state) => state.products);
 
-  if (!localProducts.length || visibilityProducts === 'favorites') return;
+  if (!localProducts.length || filter.visibilityProducts === 'favorites')
+    return;
 
   return (
     <div className="flex flex-col gap-5">
-      <h2 className="text-2xl font-semibold">Local products:</h2>
+      <h2 className="text-2xl font-semibold">Local create:</h2>
       <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
         {localProducts.map((params) => (
           <ProductItem key={params.id} {...params} />

@@ -26,6 +26,7 @@ export const ProductsFilter = () => {
           title="Status"
           name="status"
           value={status}
+          disabled={visibilityProducts === 'favorites'}
           options={[
             { title: 'Alive', value: 'alive' },
             { title: 'Dead', value: 'dead' },
@@ -37,6 +38,7 @@ export const ProductsFilter = () => {
           title="Gender"
           name="gender"
           value={gender}
+          disabled={visibilityProducts === 'favorites'}
           options={[
             { title: 'Male', value: 'male' },
             { title: 'Female', value: 'female' },
