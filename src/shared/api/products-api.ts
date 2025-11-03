@@ -9,10 +9,10 @@ export const fetchProducts = createAsyncThunk<
   { rejectValue: string }
 >(
   'products/fetchProducts',
-  async ({ page, gender, status }, { rejectWithValue }) => {
+  async ({ page, gender, status, name }, { rejectWithValue }) => {
     try {
       const response = await axiosInstance.get<Products>('/character', {
-        params: { page, gender, status },
+        params: { page, gender, status, name },
       });
 
       return response.data;

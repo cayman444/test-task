@@ -6,12 +6,18 @@ import { FilterSelect } from './FilterSelect';
 
 export const ProductsFilter = () => {
   const navigate = useNavigate();
-  const { visibilityProducts, status, gender, changeFilter } =
-    useProductsFilter();
+  const {
+    visibilityProducts,
+    status,
+    gender,
+    name,
+    changeFilter,
+    changeSearchValue,
+  } = useProductsFilter();
 
   return (
     <div className="flex items-center justify-between flex-wrap gap-4">
-      <div className="flex items-center gap-4 flex-wrap">
+      <div className="flex-1 flex items-center gap-4 flex-wrap">
         <FilterSelect
           title="Visibility"
           name="visibilityProducts"
@@ -47,9 +53,17 @@ export const ProductsFilter = () => {
           ]}
           onChange={changeFilter}
         />
+        <input
+          name="search"
+          defaultValue={name}
+          disabled={visibilityProducts === 'favorites'}
+          onChange={changeSearchValue}
+          placeholder="Enter name..."
+          className={`flex-1 border-2 rounded text-gray-700 border-gray-300 focus:border-blue-500 outline-0 px-2 py-1 transition-colors ${visibilityProducts === 'favorites' && 'opacity-50'}`}
+        />
       </div>
       <Button onClick={() => navigate(ROUTES_PATHS.CREATE_PRODUCT)}>
-        Create product
+        Create
       </Button>
     </div>
   );

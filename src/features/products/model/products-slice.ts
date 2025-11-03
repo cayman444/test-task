@@ -12,7 +12,12 @@ const initialState: ProductsState = {
   isLoading: true,
   error: null,
   pagination: { currentPage: 1, totalPages: null },
-  filter: { status: 'Alive', visibilityProducts: 'all', gender: 'Male' },
+  filter: {
+    status: 'Alive',
+    visibilityProducts: 'all',
+    gender: 'Male',
+    name: '',
+  },
   productsList: [],
   favoritesProducts: [],
   localProducts: [],

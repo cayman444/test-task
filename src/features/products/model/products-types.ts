@@ -23,6 +23,7 @@ export interface Filter {
   status?: Product['status'];
   gender?: Product['gender'];
   visibilityProducts?: VisibilityProducts;
+  name?: string;
 }
 
 export interface FilterParams {

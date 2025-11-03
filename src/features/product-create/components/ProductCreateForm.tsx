@@ -13,7 +13,7 @@ export const ProductCreateForm = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-5 max-w-2xl mx-auto bg-white rounded shadow p-5"
     >
-      <h1 className="text-center text-xl font-semibold">Create product</h1>
+      <h1 className="text-center text-xl font-semibold">Create character</h1>
       <div className="flex flex-col gap-2">
         <FormInput
           register={register}
