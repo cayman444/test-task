@@ -2,7 +2,7 @@ import { ArrowIcon } from '@/shared/ui';
 import type { FC } from 'react';
 import { Link } from 'react-router-dom';
 import { useProductItem } from '../hooks';
-import { type ProductTransform } from '../model';
+import { type ProductTransform } from '../model/products';
 import { DeleteIcon, LikeIcon } from '../ui';
 
 export const ProductItem: FC<ProductTransform> = (product) => {

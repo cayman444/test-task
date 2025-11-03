@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '@/app/store/store-hooks';
-import { setPagination } from '../model';
+import { setPagination } from '../model/products';
 
 export const usePagination = () => {
   const dispatch = useAppDispatch();

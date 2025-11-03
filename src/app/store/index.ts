@@ -1,6 +1,6 @@
 import { productReducer } from '@/features/product-details/model';
-import { productsReducer } from '@/features/products/model';
 import { filtersReducer } from '@/features/products/model/filters';
+import { productsReducer } from '@/features/products/model/products';
 import { configureStore } from '@reduxjs/toolkit';
 
 export const store = configureStore({

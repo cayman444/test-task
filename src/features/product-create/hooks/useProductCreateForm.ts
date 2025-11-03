@@ -1,6 +1,6 @@
 import { ROUTES_PATHS } from '@/app/router';
 import { useAppDispatch } from '@/app/store/store-hooks';
-import { createProduct } from '@/features/products/model/products-slice';
+import { createProduct } from '@/features/products/model/products';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { type SubmitHandler, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';

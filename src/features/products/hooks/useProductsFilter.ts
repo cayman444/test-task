@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '@/app/store/store-hooks';
 import type { ChangeEvent } from 'react';
-import { setPagination } from '../model';
 import { type FilterParams, setFilter } from '../model/filters';
+import { setPagination } from '../model/products';
 
 export const useProductsFilter = () => {
   const dispatch = useAppDispatch();

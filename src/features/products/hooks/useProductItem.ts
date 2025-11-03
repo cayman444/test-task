@@ -1,5 +1,9 @@
 import { useAppDispatch } from '@/app/store/store-hooks';
-import { type ProductTransform, deleteProduct, toggleLike } from '../model';
+import {
+  type ProductTransform,
+  deleteProduct,
+  toggleLike,
+} from '../model/products';
 
 export const useProductItem = (product: ProductTransform) => {
   const dispatch = useAppDispatch();
