@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import type { Filter, FilterParams } from '../model';
+import type { Filter, FilterParams } from '../model/filters';
 
 interface FilterSelectProps {
   title: string;
@@ -27,7 +27,7 @@ export const FilterSelect: FC<FilterSelectProps> = ({
         id={name}
         value={value}
         disabled={disabled}
-        onChange={(e) => onChange({ key: name, value: e.target.value })}
+        onChange={(e) => onChange({ type: name, value: e.target.value })}
         className="border rounded-lg p-1 cursor-pointer disabled:cursor-default"
       >
         {options.map(({ value, title }) => (

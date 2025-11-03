@@ -4,7 +4,7 @@ import { setPagination } from '../model';
 export const usePagination = () => {
   const dispatch = useAppDispatch();
   const visibilityProducts = useAppSelector(
-    (state) => state.products.filter.visibilityProducts
+    (state) => state.filters.visibilityProducts
   );
   const { currentPage, totalPages } = useAppSelector(
     (state) => state.products.pagination

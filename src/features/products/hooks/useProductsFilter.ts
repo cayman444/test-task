@@ -1,20 +1,21 @@
 import { useAppDispatch, useAppSelector } from '@/app/store/store-hooks';
 import type { ChangeEvent } from 'react';
-import { type FilterParams, setFilter, setPagination } from '../model';
+import { setPagination } from '../model';
+import { type FilterParams, setFilter } from '../model/filters';
 
 export const useProductsFilter = () => {
   const dispatch = useAppDispatch();
   const { status, visibilityProducts, gender, name } = useAppSelector(
-    (state) => state.products.filter
+    (state) => state.filters
   );
 
-  const changeFilter = ({ key, value }: FilterParams) => {
-    dispatch(setFilter({ key, value }));
+  const changeFilter = ({ type, value }: FilterParams) => {
+    dispatch(setFilter({ type, value }));
     dispatch(setPagination({ currentPage: 1 }));
   };
 
   const changeSearchValue = (e: ChangeEvent<HTMLInputElement>) => {
-    dispatch(setFilter({ key: 'name', value: e.target.value }));
+    dispatch(setFilter({ type: 'name', value: e.target.value }));
     dispatch(setPagination({ currentPage: 1 }));
   };
 

@@ -11,24 +11,9 @@ export interface ProductsState {
   localProducts: ProductTransform[];
   favoritesProducts: ProductTransform[];
   pagination: Pagination;
-  filter: Filter;
 }
 
 export interface Pagination {
   totalPages?: number | null;
   currentPage: number;
 }
-
-export interface Filter {
-  status?: Product['status'];
-  gender?: Product['gender'];
-  visibilityProducts?: VisibilityProducts;
-  name?: string;
-}
-
-export interface FilterParams {
-  key: keyof Filter;
-  value: string;
-}
-
-export type VisibilityProducts = 'all' | 'favorites';

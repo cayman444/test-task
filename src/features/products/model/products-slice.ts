@@ -2,7 +2,6 @@ import { fetchProducts } from '@/shared/api/products-api';
 import type { Products } from '@/shared/api/types';
 import { type PayloadAction, createSlice } from '@reduxjs/toolkit';
 import type {
-  FilterParams,
   Pagination,
   ProductTransform,
   ProductsState,
@@ -12,12 +11,6 @@ const initialState: ProductsState = {
   isLoading: true,
   error: null,
   pagination: { currentPage: 1, totalPages: null },
-  filter: {
-    status: 'Alive',
-    visibilityProducts: 'all',
-    gender: 'Male',
-    name: '',
-  },
   productsList: [],
   favoritesProducts: [],
   localProducts: [],
@@ -72,10 +65,6 @@ export const productsSlice = createSlice({
         state.pagination.totalPages = payload.totalPages ?? null;
       }
     },
-    setFilter: (state, { payload }: PayloadAction<FilterParams>) => {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      state.filter[payload.key] = payload.value as any;
-    },
   },
   extraReducers: (builder) => {
     builder
@@ -104,11 +93,6 @@ export const productsSlice = createSlice({
   },
 });
 
-export const {
-  toggleLike,
-  deleteProduct,
-  createProduct,
-  setPagination,
-  setFilter,
-} = productsSlice.actions;
+export const { toggleLike, deleteProduct, createProduct, setPagination } =
+  productsSlice.actions;
 export default productsSlice.reducer;

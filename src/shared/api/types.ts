@@ -1,4 +1,4 @@
-import type { Filter } from '@/features/products/model';
+import type { Filter } from '@/features/products/model/filters';
 
 export interface Products {
   info: ProductsInfo;

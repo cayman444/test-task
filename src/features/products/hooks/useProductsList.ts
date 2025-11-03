@@ -10,7 +10,7 @@ export const useProductsList = () => {
   );
   const { currentPage } = useAppSelector((state) => state.products.pagination);
   const { visibilityProducts, gender, status, name } = useAppSelector(
-    (state) => state.products.filter
+    (state) => state.filters
   );
 
   const productsVisibilityList =
